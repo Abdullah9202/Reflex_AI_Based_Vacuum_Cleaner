@@ -38,7 +38,7 @@ class vCleaner:
         
 
     # Function for creating a vacuum cleaner
-    def vacuumCleaner(self):
+    def vacuumCleaner(self, vacuum_cleaner_Speed):
         # Creating a vacuum cleaner
         self.vacuum = Turtle()
         # Hiding the vacuum cleaner
@@ -46,7 +46,7 @@ class vCleaner:
         # Size of vacuum cleaner
         self.vacuum.shapesize(3.5, 3.5, 3)
         # Setting up the speed
-        self.vacuum.speed(9)
+        self.vacuum.speed(vacuum_cleaner_Speed)
         # Lifting the pen up
         self.vacuum.penup()
         # Setting up a starting point

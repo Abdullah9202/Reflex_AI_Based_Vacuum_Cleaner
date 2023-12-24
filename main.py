@@ -8,7 +8,7 @@ Frame.title("Intelligent Vacuum Cleaner")
 # Screen dimensions
 Frame.setup(width=800, height=800)
 # Creating an object of the class
-Obj1 = vCleaner()
+Obj1 = vCleaner(9)
 # Creating a charging port
 Obj1.dumpingPod()
 # Creating a charging port
