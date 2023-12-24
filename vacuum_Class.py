@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # Excel file path
-EXCEL_FILE_PATH = "Code/Reports/my_Data.xlsx"
+EXCEL_FILE_PATH = "Reports/my_Data.xlsx"
 
 # X and Y Co-ordinates for 800 x 800 frame
 MIN_X_COR = -350
