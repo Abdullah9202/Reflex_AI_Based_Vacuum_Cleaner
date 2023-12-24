@@ -46,7 +46,7 @@ class vCleaner:
         # Size of vacuum cleaner
         self.vacuum.shapesize(3.5, 3.5, 3)
         # Setting up the speed
-        self.vacuum.speed(4)
+        self.vacuum.speed(9)
         # Lifting the pen up
         self.vacuum.penup()
         # Setting up a starting point
@@ -62,13 +62,31 @@ class vCleaner:
     def chargingPort(self):
         # Charging port object
         self.cPort = Turtle(shape="square", visible=False)
+        # Color
+        self.cPort.color("green")
         # Picking up the pen
         self.cPort.penup()
         # Size of Chraging Port
         self.cPort.shapesize(1, 1, 0.5)
         # Positioning the Chraging Port
-        self.cPort.goto(345, 345)
+        self.cPort.goto(350, 350)
+        # Unhiding the turtle
         self.cPort.showturtle()
+        
+    # Function to create a dumping pod
+    def dumpingPod(self):
+        # Dumping pod object
+        self.dPod = Turtle(shape="circle", visible=False)
+        # Color
+        self.dPod.color("red")
+        # Picking up the pen
+        self.dPod.penup()
+        # Size of Chraging Port
+        self.dPod.shapesize(2, 2, 2)
+        # Positioning the Chraging Port
+        self.dPod.goto(-350, 350)
+        # Unhiding the turtle
+        self.dPod.showturtle()
         
     # Function to start cleaning
     def startCleaning(self):
@@ -88,6 +106,10 @@ class vCleaner:
             df.to_excel(EXCEL_FILE_PATH, index=False)
         # self.vacuum.forward(100)
         while True:
+            # Checking if any dirt remained
+            if not self.dirt_List:
+                break # Breaking out of the loop
+            
             # Calculate the current position
             current_x = self.vacuum.xcor()
             current_y = self.vacuum.ycor()
