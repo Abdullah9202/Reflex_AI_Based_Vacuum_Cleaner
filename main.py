@@ -1,5 +1,5 @@
 from turtle import Screen
-from vacuum_Class import V_Cleaner
+from vacuum_Class import vCleaner
 
 # Screen
 Frame = Screen()
@@ -8,13 +8,13 @@ Frame.title("Intelligent Vacuum Cleaner")
 # Screen dimensions
 Frame.setup(width=800, height=800)
 # Creating an object of the class
-Obj1 = V_Cleaner()
+Obj1 = vCleaner()
 # Calling dirt function
-Obj1.create_Dirt(20)
+Obj1.createDirt(20)
 # Creating vacuum cleaner
-Obj1.vacuum_Cleaner()
+Obj1.vacuumCleaner()
 # Calling start cleaning function
-Obj1.start_Cleaning()
+Obj1.startCleaning()
 
 # Exit
 Frame.exitonclick()

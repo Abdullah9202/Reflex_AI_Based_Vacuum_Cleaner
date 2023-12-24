@@ -13,7 +13,7 @@ MAX_X_COR = 350
 MIN_Y_COR = -350
 MAX_Y_COR = 350
 
-class V_Cleaner:
+class vCleaner:
     def __init__(self):
         self.dirt_List = [] # To store dirt objects
         self.dirt = 0 # To temporarily store the dirt object
@@ -21,7 +21,7 @@ class V_Cleaner:
         self.movment_Angles = [0, 45, 90, 135, 180, 225, 270, 315, 360]
     
     # Function for creating the dirt
-    def create_Dirt(self, dirt_Points): # This function will create 10 dirt points
+    def createDirt(self, dirt_Points): # This function will create 10 dirt points
         # Creating 10 dirt objects using for loop
         for x in range(dirt_Points):
             self.dirt = Turtle() # Assigining new dirt object
@@ -38,7 +38,7 @@ class V_Cleaner:
         
 
     # Function for creating a vacuum cleaner
-    def vacuum_Cleaner(self):
+    def vacuumCleaner(self):
         # Creating a vacuum cleaner
         self.vacuum = Turtle()
         # Hiding the vacuum cleaner
@@ -58,9 +58,15 @@ class V_Cleaner:
         # # Speed of vacuum cleaner
         # self.vacuum.speed(1)
         
+    # Function to create a chraging port
+    def chargingPort(self):
+        # Charging port object
+        self.cPort = Turtle(shape="square")
+        # Hiding the charging port until it reaches to the correct position
+        self.cPort.hideturtle() 
         
     # Function to start cleaning
-    def start_Cleaning(self):
+    def startCleaning(self):
         # Checking if the "Reports" directory exists
         reports_Dir = os.path.dirname(EXCEL_FILE_PATH)
         if not os.path.exists(path=reports_Dir):
