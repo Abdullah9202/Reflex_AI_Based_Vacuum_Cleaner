@@ -1,0 +1,1 @@
+I've created a Visual implementation of Reflex AI based vacuum cleaner using turtle and pandas lib in python. The vacuum cleaner senses the dirt in 360 degrees. If it finds the dirt, it move towards the dirt to clean it and also report back to the database. 
