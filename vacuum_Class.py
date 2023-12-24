@@ -61,9 +61,14 @@ class vCleaner:
     # Function to create a chraging port
     def chargingPort(self):
         # Charging port object
-        self.cPort = Turtle(shape="square")
-        # Hiding the charging port until it reaches to the correct position
-        self.cPort.hideturtle() 
+        self.cPort = Turtle(shape="square", visible=False)
+        # Picking up the pen
+        self.cPort.penup()
+        # Size of Chraging Port
+        self.cPort.shapesize(1, 1, 0.5)
+        # Positioning the Chraging Port
+        self.cPort.goto(345, 345)
+        self.cPort.showturtle()
         
     # Function to start cleaning
     def startCleaning(self):
