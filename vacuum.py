@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # Excel file path
-EXCEL_FILE_PATH = "Reports/my_Data.xlsx"
+EXCEL_FILE_PATH = os.path.abspath("Reports/my_Data.xlsx")
 
 # X and Y Co-ordinates for 800 x 800 frame
 MIN_X_COR = -350
@@ -134,8 +134,8 @@ class vCleaner:
             for dirt_L in self.dirt_List:
                 distance = self.vacuum.distance(dirt_L)
                 # Sensing the dirt from 150 pixels radius
-                if distance <= 150:
-                    dirt_Pos = self.vacuum.towards(dirt_L)
+                if distance <= 250:
+                    dirt_Pos = self.vacuum.towards(x=dirt_L.xcor(), y=dirt_L.ycor())
                     print(f"Dirt found at angle {dirt_Pos}. Moving towards it.")
                     # Adding the cleaned dirt postion to excel file
                     df = df._append({"Dirt_Position": dirt_Pos, "Status": "Cleaned"}, ignore_index=True)                    
