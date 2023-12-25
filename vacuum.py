@@ -20,7 +20,7 @@ class vCleaner:
         self.dirt = 0 # To temporarily store the dirt object
         self.vacuum = None # Initialize vacuum cleaner as none
         self.movment_Angles = [0, 45, 90, 135, 180, 225, 270, 315, 360]
-        self.step_counter = 0 # To keep track of number of steps taken by turtle
+        # self.step_counter = 0 # To keep track of number of steps taken by turtle
         self.sensing_Radius = 150 # Sensing radius of vacuum cleaner
     
     # Function for creating the dirt
@@ -135,10 +135,12 @@ class vCleaner:
                 angle_to_turn = self.vacuum.towards(0, 0)  # Point towards the center
                 self.vacuum.setheading(angle_to_turn)  # Set the new heading
                 self.vacuum.forward(50)  # Move forward to stay within bounds
-                self.step_counter += 50 # Counting the steps
+                self.Charging_Bar.updateCharge(50)
+                # self.step_counter += 50 # Counting the steps
             else:
                 self.vacuum.forward(100)
-                self.step_counter += 100 # Counting the steps
+                self.Charging_Bar.updateCharge(100)
+                # self.step_counter += 100 # Counting the steps
                 self.vacuum.setheading(choice(self.movment_Angles))
                 
                 
@@ -154,7 +156,8 @@ class vCleaner:
                     # Changing the head direction in the direction of dirt
                     self.vacuum.setheading(dirt_Pos)
                     self.vacuum.forward(distance) # Moving towards the dirt
-                    self.step_counter += distance # Counting the steps
+                    self.Charging_Bar.updateCharge(distance)
+                    # self.step_counter += distance # Counting the steps
                     # Cleaning the dirt
                     self.dirt_List.remove(dirt_L) # Dirt removed from the list
                     print("Cleaning.")
