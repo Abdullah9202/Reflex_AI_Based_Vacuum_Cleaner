@@ -1,5 +1,6 @@
 from turtle import Screen
-from vacuum_Class import vCleaner
+from vacuum import vCleaner
+from chrPort_dumpPod import ChPort
 
 # Screen
 Frame = Screen()
@@ -8,17 +9,17 @@ Frame.title("Intelligent Vacuum Cleaner")
 # Screen dimensions
 Frame.setup(width=800, height=800)
 # Creating an object of the class
-Obj1 = vCleaner()
+VCln = vCleaner()
 # Creating a charging port
-Obj1.dumpingPod()
+VCln.dumpingPod()
 # Creating a charging port
-Obj1.chargingPort()
+VCln.chargingPort()
 # Calling dirt function
-Obj1.createDirt(20)
+VCln.createDirt(20)
 # Creating vacuum cleaner
-Obj1.vacuumCleaner(9)
+VCln.vacuumCleaner(9)
 # Calling start cleaning function
-Obj1.startCleaning()
+VCln.startCleaning()
 
 # Exit
 Frame.exitonclick()
