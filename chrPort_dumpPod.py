@@ -14,7 +14,7 @@ class ChBar():
         screen_width = self.frame.winfo_screenwidth()
         # Setting the Windows dimensions
         window_height = int(screen_height * 0.2)
-        window_width = int(screen_width * 0.8)
+        window_width = int(screen_width * 0.71)
         # Placing the frame
         self.frame.geometry(f"220x50+{window_width}+{window_height}")
         # Progress bar
@@ -27,4 +27,5 @@ class ChBar():
     # Function to start threading for Progress bar
     def chrPortProgressBar_Threaded(self):
         # Creating a separate daemon thread for tkinter
-        threading.Thread(target=self.chrPortProgressBar, daemon=True).start()
+        self.thread = threading.Thread(target=self.chrPortProgressBar, daemon=True)
+        self.thread.start()

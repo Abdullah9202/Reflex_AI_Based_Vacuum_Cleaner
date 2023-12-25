@@ -1,3 +1,4 @@
+from chrPort_dumpPod import ChBar
 from random import randint, choice
 from turtle import Turtle
 from time import sleep
@@ -90,6 +91,11 @@ class vCleaner:
         
     # Function to start cleaning
     def startCleaning(self):
+        # Creating an object of ChPort class
+        self.Charging_Bar = ChBar()
+        # Creating the charging the progress bar
+        self.Charging_Bar.chrPortProgressBar_Threaded()
+        
         # Checking if the "Reports" directory exists
         reports_Dir = os.path.dirname(EXCEL_FILE_PATH)
         if not os.path.exists(path=reports_Dir):
