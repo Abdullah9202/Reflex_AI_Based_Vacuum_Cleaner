@@ -25,7 +25,6 @@ class ChBar():
         self.frame.mainloop()
         
     # Function to start threading for Progress bar
-    def startThread(self):
-        # Creating a separate thread for tkinter
-        thread = threading.Thread(target=self.chrPortProgressBar())
-        thread.start()
+    def chrPortProgressBar_Threaded(self):
+        # Creating a separate daemon thread for tkinter
+        threading.Thread(target=self.chrPortProgressBar, daemon=True).start()

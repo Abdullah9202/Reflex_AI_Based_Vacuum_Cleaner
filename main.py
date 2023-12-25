@@ -20,7 +20,7 @@ VCln.createDirt(20)
 # Creating vacuum cleaner
 VCln.vacuumCleaner(9)
 # Creating the charging the progress bar
-Charging_Bar.chrPortProgressBar()
+Charging_Bar.chrPortProgressBar_Threaded()
 # Calling start cleaning function
 VCln.startCleaning()
 
