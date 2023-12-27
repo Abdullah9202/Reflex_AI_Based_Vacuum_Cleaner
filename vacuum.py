@@ -1,4 +1,4 @@
-from chrPort_dumpPod import ChBar
+# from chrPort_dumpPod import ChBar
 from random import randint, choice
 from turtle import Turtle
 from time import sleep
@@ -16,7 +16,8 @@ MAX_Y_COR = 350
 
 class vCleaner:
     def __init__(self):
-        self.dirt_List = [] # To store dirt objects
+        self.dirt_Counter = 0
+        self.dirt_List = [] 
         self.dirt = 0 # To temporarily store the dirt object
         self.vacuum = None # Initialize vacuum cleaner as none
         self.movment_Angles = [0, 45, 90, 135, 180, 225, 270, 315, 360]
@@ -61,20 +62,20 @@ class vCleaner:
         # # Speed of vacuum cleaner
         # self.vacuum.speed(1)
         
-    # Function to create a chraging port
-    def chargingPort(self):
-        # Charging port object
-        self.cPort = Turtle(shape="square", visible=False)
-        # Color
-        self.cPort.color("green")
-        # Picking up the pen
-        self.cPort.penup()
-        # Size of Chraging Port
-        self.cPort.shapesize(1, 1, 0.5)
-        # Positioning the Chraging Port
-        self.cPort.goto(350, 350)
-        # Unhiding the turtle
-        self.cPort.showturtle()
+    # # Function to create a chraging port
+    # def chargingPort(self):
+    #     # Charging port object
+    #     self.cPort = Turtle(shape="square", visible=False)
+    #     # Color
+    #     self.cPort.color("green")
+    #     # Picking up the pen
+    #     self.cPort.penup()
+    #     # Size of Chraging Port
+    #     self.cPort.shapesize(1, 1, 0.5)
+    #     # Positioning the Chraging Port
+    #     self.cPort.goto(350, 350)
+    #     # Unhiding the turtle
+    #     self.cPort.showturtle()
         
     # Function to create a dumping pod
     def dumpingPod(self):
@@ -84,20 +85,41 @@ class vCleaner:
         self.dPod.color("red")
         # Picking up the pen
         self.dPod.penup()
-        # Size of Chraging Port
+        # Size of Dumping Pod
         self.dPod.shapesize(2, 2, 2)
-        # Positioning the Chraging Port
+        # Positioning the Dumping Pod
         self.dPod.goto(-350, 350)
         # Unhiding the turtle
         self.dPod.showturtle()
         
+    # Function to send vacuum cleaner on dumping pod
+    def on_DumpingPod(self):
+        # Moving the turtle towards the dumping port
+        self.vacuum.setheading(self.vacuum.towards(x=-350, y=350))
+        self.vacuum.goto(x=-350, y=350)
+        if self.vacuum.distance(x=-350, y=350) <= 0:
+            sleep(2)
+            print("On dumping pod")
+        
+    # # Function to send the vacuum cleaner to the charging port (Called by updateCharge() inside ChBar() class)
+    # def is_OnChPort(self):
+    #     # Head towards charging port
+    #     self.vacuum.setheading(self.vacuum.towards(x=350, y=350))
+    #     # Going towards the charging port
+    #     self.vacuum.goto(x=350, y=350)
+    #     # Setting head towards center
+    #     self.vacuum.setheading(self.vacuum.towards(x=0, y=0))
+    #     # Checking if the vacuum cleaner is on the charging port
+    #     return self.vacuum.distance(x=350, y=350) <= 0
+            
     # Function to start cleaning
     def startCleaning(self):
         # ===============================================
         # Creating an object of ChPort class            # 
-        self.Charging_Bar = ChBar()                     # 
+        # self.Charging_Bar = ChBar()
+        # self.Charging_Bar = charging_Bar_Param 
         # Creating the charging the progress bar        #
-        self.Charging_Bar.chrPortProgressBar_Threaded() #
+        # self.Charging_Bar.chrPortProgressBar_Threaded() #
         # ===============================================
         
         # Checking if the "Reports" directory exists
@@ -135,11 +157,11 @@ class vCleaner:
                 angle_to_turn = self.vacuum.towards(0, 0)  # Point towards the center
                 self.vacuum.setheading(angle_to_turn)  # Set the new heading
                 self.vacuum.forward(50)  # Move forward to stay within bounds
-                self.Charging_Bar.updateCharge(50)
+                # self.Charging_Bar.updateCharge(50)
                 # self.step_counter += 50 # Counting the steps
             else:
                 self.vacuum.forward(100)
-                self.Charging_Bar.updateCharge(100)
+                # self.Charging_Bar.updateCharge(100)
                 # self.step_counter += 100 # Counting the steps
                 self.vacuum.setheading(choice(self.movment_Angles))
                 
@@ -156,7 +178,7 @@ class vCleaner:
                     # Changing the head direction in the direction of dirt
                     self.vacuum.setheading(dirt_Pos)
                     self.vacuum.forward(distance) # Moving towards the dirt
-                    self.Charging_Bar.updateCharge(distance)
+                    # self.Charging_Bar.updateCharge(distance)
                     # self.step_counter += distance # Counting the steps
                     # Cleaning the dirt
                     self.dirt_List.remove(dirt_L) # Dirt removed from the list
@@ -164,6 +186,15 @@ class vCleaner:
                     sleep(1) # 1 sec delay for cleaning ==> Optional
                     dirt_L.hideturtle()
                     print("Dirt removed.")
+                    self.dirt_Counter += 1
+                    # Checking if the vacuum cleaner is 90% full
+                    if self.dirt_Counter >= 9:
+                        # Resetting the counter
+                        self.dirt_Counter = 0 
+                        print("Dirt capacity reached. Moving towards the dumping pod.")
+                        # Calling the on_DumpingPod() functions
+                        self.on_DumpingPod()
+                    
                     
             # Saving the data to the excel file
             df.to_excel(EXCEL_FILE_PATH, index=False)

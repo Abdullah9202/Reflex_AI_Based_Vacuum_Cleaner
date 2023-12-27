@@ -14,12 +14,13 @@ VCln = vCleaner()
 # Creating a dumping pod in turtle frame
 VCln.dumpingPod()
 # Creating a charging port in turtle frame
-VCln.chargingPort()
+# VCln.chargingPort()
 # Calling dirt function
 VCln.createDirt(20)
 # Creating vacuum cleaner
 VCln.vacuumCleaner(9)
 # Creating the chraging bar
+# charging_Bar = ChBar() # Object
 # charging_Bar.chrPortProgressBar_Threaded()
 # Calling start cleaning function
 VCln.startCleaning()
